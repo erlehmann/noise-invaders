@@ -61,7 +61,7 @@ class Player(Object):
         self.step        = 3 * self.game.stride
         self.fire        = False
         self.fireLatency = 3
-        self.salvo       = 5
+        self.salvo       = 3
         self.livesReset  = Conf.PLAYER_LIVES
         self.lives       = Conf.PLAYER_LIVES
         # Reset() does the rest.

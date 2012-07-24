@@ -52,7 +52,7 @@ class TextLine(Drawable):
         assert( self.font )
 
     def Draw( self, surface ):
-        image = self.font.render( self.text, 1, self.color )
+        image = self.font.render( self.text, 1, self.color, (0,0,0,0) )
         rect = image.get_rect()
         if self.center:
             rect.centerx = self.x
@@ -60,7 +60,7 @@ class TextLine(Drawable):
         else:
             rect.left = self.x
             rect.top  = self.y
-        surface.blit( image, rect )
+        surface.blit( image, rect, special_flags=pygame.BLEND_RGBA_MULT )
 
     def SetText( self, text ):
         self.text = text

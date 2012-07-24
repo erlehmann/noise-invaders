@@ -7,8 +7,8 @@
 
 import sys, random
 import pygame
-from pygame.locals import K_1, K_ESCAPE, K_p, K_F5, K_F6, K_z, K_LEFT, K_x, \
-                          K_RIGHT, K_RCTRL, K_LCTRL, KEYUP, KEYDOWN
+from pygame.locals import K_RETURN, K_ESCAPE, K_p, K_LEFT, \
+                          K_RIGHT, K_SPACE, KEYUP, KEYDOWN
 from pyspaceinvaders_exception import *
 from pyspaceinvaders_lib import *
 from pyspaceinvaders_conf import *
@@ -39,7 +39,6 @@ class Game:
         self.tempo   = 1  # fewer aliens will move faster 
         self.score   = 0
         self.level   = 1
-        self.cheat   = 0  # 1: 999 lives 2: 999 lives + machine-guns
         self.ground  = window.height - Conf.GROUND_PADDING
         self.ceiling = Conf.CEILING
 
@@ -224,8 +223,7 @@ class Game:
                 if Collided( missile, alien ) and (alien.valid) and (alien.hit <= 0):
                     alien.Hit()
                     self.score += Alien.POINTS
-                    if self.cheat != 2:
-                        missile.valid = False
+                    missile.valid = False
             # Has this missile hit any opposite missile?
             MissileMissileCollision( missile, missileIdx, self.alienMissiles )
 
@@ -339,7 +337,7 @@ class Game:
                 self.Draw()
             elif event.type == KEYDOWN:
                 # Start game?
-                if event.key == K_1:
+                if event.key == K_RETURN:
                     self.Reset( level=1 )
                     self.state = Game.STATE_PLAY
                     self.gameTextPage.ShowSplash( False )
@@ -352,17 +350,6 @@ class Game:
                     if self.state != Game.STATE_STOP:
                         self.gameTextPage.ToggleHelp()
                     self.TogglePause()
-                # Cheat?
-                elif event.key == K_F5:
-                    self.cheat = 1
-                    self.player.livesReset = 999
-                    self.player.lives      = 999
-                    self.player.salvo = 8
-                elif event.key == K_F6:
-                    self.cheat = 2
-                    self.player.livesReset = 999
-                    self.player.lives      = 999
-                    self.player.salvo = 16
             
                 #----ignore other keys if not playing----
                 if self.state != Game.STATE_PLAY:
@@ -370,18 +357,18 @@ class Game:
                 #----ignore other keys if not playing----
     
                 # Move player left?
-                if (event.key == K_z) or (event.key == K_LEFT):
+                if (event.key == K_LEFT):
                     self.player.movement = ( -self.player.step, 0 )
                 # Move player right?
-                elif (event.key == K_x) or (event.key == K_RIGHT):
+                elif (event.key == K_RIGHT):
                     self.player.movement = ( self.player.step, 0 )
                 # Player fired gun?
-                elif (event.key == K_RCTRL) or (event.key == K_LCTRL):
+                elif (event.key == K_SPACE):
                     self.player.fire = True
             elif event.type == KEYUP:
                 # Stop moving player?
-                if (event.key == K_z) or (event.key == K_x) or (event.key == K_LEFT) or (event.key == K_RIGHT):
+                if (event.key == K_LEFT) or (event.key == K_RIGHT):
                     self.player.movement = ( 0, 0 )
                 # Player stopped firing gun?
-                elif (event.key == K_RCTRL) or (event.key == K_LCTRL):
+                elif (event.key == K_SPACE):
                     self.player.fire = False

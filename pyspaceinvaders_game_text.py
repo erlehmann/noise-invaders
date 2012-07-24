@@ -29,19 +29,17 @@ class GameTextPage:
         # Some have constant text.
         # Some have dynamic text/attributes that are updated by Draw().
         self.textLineScore    = TextLine( x=4, y=4, color=Color.TEXT )  # dynamic text
-        self.textLineLevel    = TextLine( x=16+window.width//4, y=4, color=Color.TEXT )
-        self.textLineLives    = TextLine( x=window.width//2, y=4, color=Color.ALIVE )
-        self.textLineGameOver = TextLine( text="GAME OVER", x=window.width*3//4, y=4, color=Color.GAME_OVER )
-        x = window.width // 2; y = 32  # splash x,y
+        self.textLineLevel    = TextLine( x=36+window.width//3, y=4, color=Color.TEXT, )
+        self.textLineLives    = TextLine( x=24+window.width//4*3, y=4, color=Color.ALIVE )
+        self.textLineGameOver = TextLine( text="GAME OVER", x=window.width//2, y=224, color=Color.GAME_OVER, center=True )
+        x = window.width // 2; y =192  # splash x,y
         self.textLinesSplash = \
-           [ TextLine( text="PYTHON SPACE INVADERS",     x=x, y=y+32*1, color=Color.GREEN, center=True ), \
-             TextLine( text="WWW.JIMBROOKS.ORG/PYTHON/", x=x, y=y+32*2, color=Color.CYAN,  center=True ), \
-             TextLine( text="1: START",                  x=x, y=y+32*3, color=Color.TEXT,  center=True ), \
-             TextLine( text="Z / L-ARROW: LEFT",         x=x, y=y+32*4, color=Color.TEXT,  center=True ), \
-             TextLine( text="X / R-ARROW: RIGHT",        x=x, y=y+32*5, color=Color.TEXT,  center=True ), \
-             TextLine( text="CTRL: FIRE",                x=x, y=y+32*6, color=Color.TEXT,  center=True ), \
+           [ TextLine( text="NOISE INVADERS",     x=x, y=y+32*1, color=Color.TEXT, center=True ), \
+             TextLine( text="ENTER: START",                  x=x, y=y+32*3, color=Color.TEXT,  center=True ), \
+             TextLine( text="LEFT ARROW: LEFT",         x=x, y=y+32*4, color=Color.TEXT,  center=True ), \
+             TextLine( text="RIGHT ARROW: RIGHT",        x=x, y=y+32*5, color=Color.TEXT,  center=True ), \
+             TextLine( text="SPACE : FIRE",                x=x, y=y+32*6, color=Color.TEXT,  center=True ), \
              TextLine( text="P: PAUSE / HELP",           x=x, y=y+32*7, color=Color.TEXT,  center=True ), \
-             TextLine( text="F5, F6: CHEAT, CHEAT MORE", x=x, y=y+32*8, color=Color.TEXT,  center=True ), \
              TextLine( text="ESC: QUIT",                 x=x, y=y+32*9, color=Color.TEXT,  center=True )  ]
 
         # Show some text lines.
