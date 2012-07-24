@@ -9,6 +9,7 @@ import random
 import pygame
 from pyspaceinvaders_exception import *
 from pyspaceinvaders_conf import *
+from pyspaceinvaders_noise import add_noise
 
 #-------------------------------------------------------------------------------
 # Base class of drawable objects.
@@ -49,6 +50,12 @@ class Player(Object):
         self.image       = pygame.image.load( "img/player.png" ).convert()
         self.image2      = pygame.image.load( "img/playerb.png" ).convert()
         self.imageHit    = pygame.image.load( "img/explosion.png" ).convert()
+        add_noise(self.image)
+        add_noise(self.image2)
+        add_noise(self.imageHit)
+        self.image.set_colorkey(Color.KEY)
+        self.image2.set_colorkey(Color.KEY)
+        self.imageHit.set_colorkey(Color.KEY)
         self.rect        = self.image.get_rect()
         self.imageFlip   = False
         self.step        = 3 * self.game.stride
@@ -81,7 +88,7 @@ class Player(Object):
             else:
                 surface.blit( self.image2, self.rect )
         else:
-            surface.blit( self.imageHit, self.rect )
+             surface.blit( self.imageHit, self.rect )
 
 #-------------------------------------------------------------------------------
 # Alien class.
@@ -105,6 +112,12 @@ class Alien(Object):
         self.image    = pygame.image.load( fname  ).convert()
         self.image2   = pygame.image.load( fname2 ).convert()
         self.imageHit = pygame.image.load( "img/explosion.png" ).convert()
+        add_noise(self.image)
+        add_noise(self.image2)
+        add_noise(self.imageHit)
+        self.image.set_colorkey(Color.KEY)
+        self.image2.set_colorkey(Color.KEY)
+        self.imageHit.set_colorkey(Color.KEY)
         self.rect     = self.image.get_rect()
     
     def Hit( self ):
@@ -128,6 +141,8 @@ class PlayerMissile(Object):
     def __init__( self, game ):
         Object.__init__( self, game )
         self.image        = pygame.image.load( "img/missile_player.png" ).convert()
+        add_noise(self.image)
+        self.image.set_colorkey(Color.KEY)
         self.rect         = self.image.get_rect()
         self.rect.centerx = self.game.player.rect.centerx
         self.rect.centery = self.game.player.rect.centery - self.game.player.rect.height
@@ -144,6 +159,8 @@ class AlienMissile(Object):
     def __init__( self, game, alien ):
         Object.__init__( self, game )
         self.image        = pygame.image.load( "img/missile_alien.png" ).convert()
+        add_noise(self.image)
+        self.image.set_colorkey(Color.KEY)
         self.rect         = self.image.get_rect()
         self.rect.centerx = alien.rect.centerx + random.randint( -8, 8 )
         self.rect.centery = alien.rect.centery + alien.rect.height

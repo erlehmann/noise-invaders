@@ -7,6 +7,7 @@
 
 import pygame
 from pyspaceinvaders_conf import Conf, Color
+from pyspaceinvaders_noise import add_noise
 
 #-------------------------------------------------------------------------------
 # Window class.
@@ -19,6 +20,9 @@ class Window:
         self.width = width
         self.height = height
         self.surface = pygame.display.set_mode((width, height))
+        self.noise = pygame.Surface.copy(self.surface)
+        self.noise.fill(Color.BG)
+        add_noise(self.noise)
         pygame.display.set_caption(title)
         try:
             pygame.display.set_icon(pygame.image.load(Conf.WINDOW_ICON))
@@ -27,4 +31,4 @@ class Window:
 
     def Clear( self ):
         """Clear surface"""
-        self.surface.fill(Color.BG)
+        self.surface.blit(self.noise, (0,0))
