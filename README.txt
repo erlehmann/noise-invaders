@@ -20,7 +20,7 @@ To run:
 Requires:
 ---------
 - Python 2.6 or 3.x.
-  http:/www.python.org
+  http://www.python.org
 
 - PyGame
   http://www.pygame.org
