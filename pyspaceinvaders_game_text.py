@@ -30,17 +30,11 @@ class GameTextPage:
         # Some have dynamic text/attributes that are updated by Draw().
         self.textLineScore    = TextLine( x=4, y=4, color=Color.TEXT )  # dynamic text
         self.textLineLevel    = TextLine( x=36+window.width//3, y=4, color=Color.TEXT, )
-        self.textLineLives    = TextLine( x=24+window.width//4*3, y=4, color=Color.ALIVE )
-        self.textLineGameOver = TextLine( text="GAME OVER", x=window.width//2, y=224, color=Color.GAME_OVER, center=True )
-        x = window.width // 2; y =192  # splash x,y
+        self.textLineLives    = TextLine( x=window.width//4*3, y=4, color=Color.ALIVE )
+        self.textLineGameOver = TextLine( text="GAME OVER", x=window.width//2, y=244, color=Color.GAME_OVER, center=True )
         self.textLinesSplash = \
-           [ TextLine( text="NOISE INVADERS",     x=x, y=y+32*1, color=Color.TEXT, center=True ), \
-             TextLine( text="ENTER: START",                  x=x, y=y+32*3, color=Color.TEXT,  center=True ), \
-             TextLine( text="LEFT ARROW: LEFT",         x=x, y=y+32*4, color=Color.TEXT,  center=True ), \
-             TextLine( text="RIGHT ARROW: RIGHT",        x=x, y=y+32*5, color=Color.TEXT,  center=True ), \
-             TextLine( text="SPACE : FIRE",                x=x, y=y+32*6, color=Color.TEXT,  center=True ), \
-             TextLine( text="P: PAUSE / HELP",           x=x, y=y+32*7, color=Color.TEXT,  center=True ), \
-             TextLine( text="ESC: QUIT",                 x=x, y=y+32*9, color=Color.TEXT,  center=True )  ]
+           [ TextLine( text="NOISE INVADERS", x=window.width//2, y=224, color=Color.TEXT, center=True ), \
+             TextLine( text="PRESS ENTER", x=window.width//2, y=324, color=Color.TEXT,  center=True ), ]
 
         # Show some text lines.
         self.textPage.Show( self.textLineScore )
@@ -69,17 +63,17 @@ class GameTextPage:
     def Draw( self, surface ):
         """ Update and draw lines of text specific to Space Invaders. """
         # Update score.
-        self.textLineScore.SetText( "SCORE: " + str(self.game.score) )
+        self.textLineScore.SetText( "SCR" + str(self.game.score) )
 
         # Update level.
-        self.textLineLevel.SetText( "LEVEL: " + str(self.game.level) )
+        self.textLineLevel.SetText( "LVL" + str(self.game.level) )
 
         # Update player's lives.
         if self.game.player.lives > 0:
             self.textLineLives.SetColor( Color.ALIVE )
         else:
             self.textLineLives.SetColor( Color.DEAD )
-        self.textLineLives.SetText( "LIVES: " + str(self.game.player.lives) )
+        self.textLineLives.SetText( "LIV" + str(self.game.player.lives) )
 
         # Now actually draw all text lines (delegate to underlying TextPage).
         self.textPage.Draw( surface )

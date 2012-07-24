@@ -9,6 +9,7 @@ import pygame
 from pyspaceinvaders_exception import *
 from pyspaceinvaders_conf import *
 from pyspaceinvaders_objects import *
+from pyspaceinvaders_noise import add_noise
 
 #-------------------------------------------------------------------------------
 # Functions.
@@ -52,7 +53,10 @@ class TextLine(Drawable):
         assert( self.font )
 
     def Draw( self, surface ):
-        image = self.font.render( self.text, 1, self.color, (0,0,0,0) )
+        image = self.font.render( self.text, False, self.color, Color.KEY )
+        image = image.convert(24)
+        add_noise(image)
+        image.set_colorkey(Color.KEY)
         rect = image.get_rect()
         if self.center:
             rect.centerx = self.x
@@ -60,7 +64,7 @@ class TextLine(Drawable):
         else:
             rect.left = self.x
             rect.top  = self.y
-        surface.blit( image, rect, special_flags=pygame.BLEND_RGBA_MULT )
+        surface.blit( image, rect )
 
     def SetText( self, text ):
         self.text = text

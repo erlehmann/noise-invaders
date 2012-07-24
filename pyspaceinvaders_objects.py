@@ -97,7 +97,7 @@ class Player(Object):
 class Alien(Object):
 
     # Class constants:
-    POINTS    = 50
+    POINTS    = 1
     COL_CNT   = 10
     ROW_CNT   = 6
     TOTAL_CNT = COL_CNT * ROW_CNT

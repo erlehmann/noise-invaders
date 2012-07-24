@@ -10,7 +10,7 @@
 class Conf():
     """Space Invaders speficic and pygame configurations"""
     # pyspaceinvaders-specific:
-    CEILING        = 32
+    CEILING        = 60
     GROUND_PADDING = 6
     PLAYER_LIVES   = 3
 
@@ -20,7 +20,7 @@ class Conf():
     WINDOW_TITLE   = "Noise Invaders"
     WINDOW_ICON    = "img/icon.png"
     FONT_NAME      = None  # pygame default
-    FONT_SIZE      = 40
+    FONT_SIZE      = 80
     TIMER_TICK     = 40
 
 #-------------------------------------------------------------------------------
